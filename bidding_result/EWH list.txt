@@ -1,0 +1,40 @@
+#######################################
+user_pattern=[13,17,24,193,39,255,12,290];
+ev_count = len(user_pattern)
+
+iteration=25
+
+
+penalty_vector= [16]
+
+heat_loss_rate = 0.04
+
+
+############################################
+stochastic results( chapter one)
+
+Stochastic_1 : tomorrow =290
+
+Stochastic_2 : tomorrow =104
+
+Stochastic_3 : tomorrow =176
+
+penalty_vector= [16]
+
+heat_loss_rate = 0.04
+
+##########################################
+Solar results( chapter two)
+
+Solar_1 : tomorrow =290
+
+Solar_2 : tomorrow =104
+
+Solar_3 : tomorrow =176
+
+
+penalty_vector= [16]
+
+heat_loss_rate = 0.04
+
+##########################################
