@@ -17,8 +17,9 @@ this set is going to be the units. for example, [2,3,88,150] means a network wit
 while 2 referes to the consumption pattern of first units in the excel file. 150 means the
 consumption pattern of forth unit which i 150th day from excel file.
 '''
-user_pattern=[13,17,24,193,39,255,12,290]; # old user pattern for the first draft of the paper
-#user_pattern=[13,17,24,193,39,255,12,290, 16, 25, 48, 70, 85, 94, 100, 110, 145, 300, 310, 330];
+#user_pattern=[13,17,24,193,39,255,12,290]; # old user pattern for the first draft of the paper
+#user_pattern=[13,17,24,193,39,255,12,290, 16, 25, 48, 70, 85, 94, 100, 110, 145, 300, 310, 330,]; the 20 house simulations
+user_pattern= range(248,250)
 #user_pattern=[13,17];
     # adjust the next line to change the number of vehicles bidding
     # (len(user_pattern) assigns 1 vehicle per user)
@@ -26,8 +27,8 @@ ev_count = len(user_pattern)
 """
 the difference between S_best and S_known. if the "gap"  is smaller than this value, loop will stop.
 """
-iteration=25
-optimality_gap=-50
+iteration=1
+optimality_gap=-50000
 
 #===========================================
 ## some model paramters.
@@ -196,8 +197,8 @@ for s in iteration_set:
     model.cost = Objective(rule=benefit_rule,sense=maximize)
     #========================================
     #solving the model
-    solver = SolverFactory('cplex_direct')     #this line works in MAC (calls CPLEX python module)
-    #solver = SolverFactory('cplex')    # this one runs fine in windows and linux (call CMD)
+    #solver = SolverFactory('cplex_direct')     #this line works in MAC (calls CPLEX python module)
+    solver = SolverFactory('cplex')    # this one runs fine in windows and linux (call CMD)
     solver.options['workdir']='{}'.format(tempdir)
     solver.options['emphasis mip 3']
     solver.options['write avvvvvvv sol all']
@@ -226,7 +227,8 @@ for b in interval_set:
 
     
 writer = pd.ExcelWriter('bidding_result/Bidding_iteration.xlsx', engine='xlsxwriter')
-Bidding_iteration.to_excel(writer,sheet_name='iter_1ter',index=True)
+Bidding_iteration.to_excel(writer,sheet_name='iter_1ter',index=True,header=True)  # the "header=True" makes the excel file to keep the multi-index relashionship. if
+# it doesn't exists, the multi-index relashionship will not be saved into the datafram after loading the the DF from an excel file
 workbook=writer.book
 worksheet = writer.sheets['iter_1ter']
 

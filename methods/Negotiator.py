@@ -87,21 +87,21 @@ for (a, b) in TIMEPOINTS:
 # it seems that by default CPLEX do not! uses methaheuristic algorithm such as genetic algorithm.
 # by adding the 'set barrier crossover 2' option, our method runs much much faster.
 
-# optimization_result = prob.solve(CPLEX_CMD(
-#         options=['set emphasis mip 4',
-# #                 'set barrier crossover 2',
-# #                 'mip strategy heuristicfreq 2',
-# #                 'mip strategy rinsheur -1',
-# #                 'mip limits submipnodelim 500',
-#                   'set mip tolerances mipgap {}'.format(Optimality_gap),
-#                   'set workmem 20000',
-#                   'set timelimit {}'.format(Run_Time), 
-#                   'set mip strategy file 3', 
-#                   #'read PreSolution\average Sol',
-#                   #'set threads 8',
-#                   'set workdir {}'.format(tempdir)
-#                           ],msg=1
-#       ))
+optimization_result = prob.solve(CPLEX_CMD(
+        options=['set emphasis mip 4',
+#                 'set barrier crossover 2',
+#                 'mip strategy heuristicfreq 2',
+#                 'mip strategy rinsheur -1',
+#                 'mip limits submipnodelim 500',
+                  'set mip tolerances mipgap {}'.format(Optimality_gap),
+                  'set workmem 20000',
+                  'set timelimit {}'.format(Run_Time), 
+                  'set mip strategy file 3', 
+                  #'read PreSolution\average Sol',
+                  #'set threads 8',
+                  'set workdir {}'.format(tempdir)
+                          ],msg=1
+      ))
 Three_Binary_Run_time=time.time() - ThreeBinary_start_time
 print(" %s seconds for Three binary (original) Model" % (time.time() - ThreeBinary_start_time))
 #=================================
@@ -109,7 +109,7 @@ print(" %s seconds for Three binary (original) Model" % (time.time() - ThreeBina
 #optimization_result = prob.solve(PULP_CBC_CMD(msg=0))
 #optimization_result = prob.solve(CPLEX_PY(mip=True,msg=True))
 #optimization_result = prob.solve(CPLEX_PY(msg=0))
-optimization_result = prob.solve(GUROBI_CMD(msg=0))
+#optimization_result = prob.solve(GUROBI_CMD(msg=0))
 #optimization_result = prob.solve(GLPK_CMD(msg=0))
 
 #================================
