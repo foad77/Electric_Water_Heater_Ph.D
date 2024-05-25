@@ -1,3 +1,4 @@
+import sys; sys.path.append('C:\\Users\\foadn\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\site-packages')
 import matplotlib.pyplot as plt
 from celluloid import Camera # getting the camera
 import pandas as pd
@@ -14,12 +15,12 @@ Bidding_iteration.set_index(index, inplace=True)
 # print(Bidding_iteration.columns)
 # import sys; sys.exit(0)
 user_pattern= range(50,250)
-iteration=7
+iteration=70
 ## some model paramters.
-penalty_shortfall=2;
 min_slot=60;interval_per_hour=60/min_slot; specific_heat = 0.001148;t_min = 25;t_in=13.88;t_out=54.4
-#creating index. we have two: iteration and intervals
+penalty_shortfall=2;
 US_average_price=0.2
+#creating index. we have two: iteration and intervals
 iteration_set=[]
 for i in range(0,iteration+1):
         iteration_set.append(i)
