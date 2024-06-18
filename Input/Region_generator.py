@@ -76,9 +76,9 @@ for r in region2:
 #     region_tomorrow=ww['temp_price']['A2:B25'];price_of_power.clear()    
 #     for k in region_tomorrow:
 #          q = int(k[0].value);interval_agg.add(q);price_of_power[current_day, q]= float(k[1].value)
-if methods_series[0]=="Negotiator":
- for b in interval_set:
-    price_of_power[current_day, b]=Bidding_iteration  .loc[(s,b),'price']
+#if methods_series[0]=="Negotiator":
+# for b in interval_set:
+#    price_of_power[current_day, b]=Bidding_iteration  .loc[(s,b),'price']
 
       
         

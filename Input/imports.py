@@ -36,7 +36,40 @@ try:
     get_ipython().magic('reset -f')
 except:
     pass
+#=============================
+# Importing the config file
+import yaml
 
+# Load the configuration file
+with open('config.yaml', 'r') as f:
+    config = yaml.safe_load(f)
+
+# Get the variables from the configuration file
+methods = config['methods']
+tomorrow = config['tomorrow']
+test_mode = config['test_mode']
+stochastic_status = config['stochastic_status']
+lookback_length = config['lookback_length']
+min_slot = config['min_slot']
+temp_resolution = config['temp_resolution']
+Run_Time = config['Run_Time']
+Optimality_gap = config['Optimality_gap']
+resolution = config['resolution']
+penalty_vector = config['penalty_vector']
+Flate_rate_vector = config['Flate_rate_vector']
+Initial_Temperature_Status = config['Initial_Temperature_Status']
+t_max = config['t_max']
+t_min = config['t_min']
+t_min_shortfall = config['t_min_shortfall']
+max_energy_input_per_hour = config['max_energy_input_per_hour']
+specific_heat = config['specific_heat']
+v = config['v']
+heat_loss_rate = config['heat_loss_rate']
+problem_formulator_status = config['problem_formulator_status']
+Conservative_Penalty_Status = config['Conservative_Penalty_Status']
+Ranged_Temperature_penalty_status = config['Ranged_Temperature_penalty_status']
+Hourly_TS_setpoint_interval = config['Hourly_TS_setpoint_interval']
+degree_of_water_per_kwh = config['degree_of_water_per_kwh']
 #=============================
 # it is used for high-level file and directory operation such as deleting the whole tree of files
 # and directories in a folder
@@ -44,12 +77,9 @@ import shutil
 start_time = time.time()
 
 def execute_file(code): 
-     if version ==3:
-         exec(compile(open(code, "rb").read(), code, 'exec'))
-     else: pass
-     if version ==2:
-         execfile(code)
-     else: pass
+    
+    exec(compile(open(code, "rb").read(), code, 'exec'))
+
 ## importing from 'hourly hot water' excel file
 #wb = load_workbook('Input/withdrawal/{}min_usage.xlsx'.format(min_slot), read_only = True, data_only=True)
 #sheet = wb['{}min_usage'.format(min_slot)]

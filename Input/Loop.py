@@ -3,7 +3,7 @@
 # or from inside of the file. if no argument is passed in command line, the code takes these values from inside of the code,
 # other wise, it will take the values from the command line arguments. 
 # so, the code works in both methods, with or without arguments.
-
+import pandas as pd
 methods_series=pd.Series(methods).astype(str)
 #===========================================================
 if len(sys.argv) == 1:
@@ -11,15 +11,21 @@ if len(sys.argv) == 1:
 # the 'frange' fuction creates a fractual range between 'k_min' and 'k_man' with 'step' steps
   if test_mode:
       loop=1
+  else:
+       loop=1   
   for current_day in range(tomorrow,tomorrow+loop):
       if methods_series[0]=="Negotiator":
-       current_day=unit   
+       #current_day=unit
+           pass  
+      #print (current_day)
+      #import sys; sys.exit()
+       
  
       # it loops through tomorrow days. e.g., if tomorrow days are 5(loop=5), it loops though the methods (out method, Apt&Goh and Du&Lu) for
       # 5 days and reports the average of these 5 days as cost of specefic value for a singular penalty facotor.          
       for j in range(0,size(penalty_vector)):
-          if version ==3: exec(compile(open('Input/Region_generator.py', "rb").read(), 'Input/Region_generator.py', 'exec'))
-          if version ==2: execfile('Input/Region_generator.py')
+          exec(compile(open('Input/Region_generator.py', "rb").read(), 'Input/Region_generator.py', 'exec'))
+
           #execute_file('Input/Region_generator.py')
           print (current_day,j)
           for m in methods_series.keys():
@@ -27,8 +33,8 @@ if len(sys.argv) == 1:
                  print ('{} penalty and {} tomorrow was runned for {}'.format(penalty_vector[j],current_day,methods_series[m]))            
             else:                
                 #try:
-                    if version ==3: exec(compile(open('methods/{}.py'.format(methods_series[m]), "rb").read(), 'methods/{}.py'.format(methods_series[m]), 'exec'))
-                    if version ==2: execfile('methods/{}.py'.format(methods_series[m]))               
+                    exec(compile(open('methods/{}.py'.format(methods_series[m]), "rb").read(), 'methods/{}.py'.format(methods_series[m]), 'exec'))
+             
                 #except:execute_file('methods/MILP.py');execute_file('methods/{}.py'.format(methods_series[m]))
           
           execute_file('Result/logging/logger.py')  

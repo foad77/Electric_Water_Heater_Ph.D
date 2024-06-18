@@ -1,0 +1,87 @@
+methods: ["MILP"] #methods=["MILP", "Du","Apt","Pyomo","Fixed","Average","Solar","Negotiator","Negotiator_Linear","EA_GA"]
+
+ # methods can be ["MILP", "Du","Apt","Pyomo","Fixed","Average","Solar","Negotiator","Negotiator_Linear","EA_GA"]
+
+# defines the length of tomorrow days. e.g., if 'loop' is '4' and 'tomorrow' is 300, it runs the code for days 300, 301, 302 and 303
+# then the average of these 4 days is reported as the expected cost. this value is different from 'lookback_length' which loops through
+# past days for each tomorrow day.
+tomorrow: 176
+
+# if true, it won't log anything. used for when not wanting anything to be saved. since it won't run again and the log file must
+# be delected eveytime
+test_mode: True
+
+# if 'True':
+# for out method: it will solve the problem for the lengh of 'lookback_length' and applies the optained termostat setpoint
+# to tomorrow withdrawal pattern and price. for Du&u and Apt&Goh: find the average of withdrawal pattern for the 'lookback_length'
+# and applies it to tomorrow withdrawal pattern.
+# if 'False': assimilate the pefect forecast situtation. i.e,. we know exactly what tomorrow price and withdrawal pattern would be
+# useful to benchmark our methord against other method when all method have access to exactly the same information.
+# so, it solves the problem only for tomorrow. for our method and other methods.
+stochastic_status: False
+
+# defines the length of previous days to solve the problem. the average of these days is used as the input (prediction) of withdrawal
+# pattern for the Du&Lu and Apt&Goh. if the 'lookback' is bigger than 'tomorrow', it will add days from end of the year. e.g., tomorrow=2 and lookback_lengh=4
+# then the lookback days set is {1,363,364,365} 
+lookback_length: 8
+
+# Minimum time slot for the optimization problem
+min_slot: 60
+
+# Temperature resolution for the optimization problem
+temp_resolution: 10
+
+# Maximum run time for the optimization problem
+Run_Time: 500
+
+# Optimality gap for the optimization problem
+Optimality_gap: 0.0
+
+# Resolution for the optimization problem
+resolution: 1
+
+# Penalty vector for the optimization problem
+penalty_vector: [16]
+
+# Flat rate vector for the optimization problem
+Flate_rate_vector: [60,42, 43,45, 47,50,57,60,62,65]
+
+# Initial temperature status for the optimization problem
+Initial_Temperature_Status: 3
+
+# Maximum temperature for the optimization problem
+t_max: 83
+
+# Minimum temperature for the optimization problem
+t_min: 25
+
+# Minimum shortfall temperature for the optimization problem
+t_min_shortfall: 40
+
+# Maximum energy input per hour for the optimization problem
+max_energy_input_per_hour: 4.5
+
+# Specific heat for the optimization problem
+specific_heat: 0.001148
+
+# Volume for the optimization problem
+v: 160
+
+# Heat loss rate for the optimization problem
+heat_loss_rate: 0.04
+
+# the multiplication of volume*Specific_heat
+degree_of_water_per_kwh: 0.18368    #160*0.001148 
+
+
+# Problem formulator status for the optimization problem
+problem_formulator_status: 1
+
+# Conservative penalty status for the optimization problem
+Conservative_Penalty_Status: False
+
+# Ranged temperature penalty status for the optimization problem
+Ranged_Temperature_penalty_status: False
+
+# Hourly thermostat setpoint interval for the optimization problem
+Hourly_TS_setpoint_interval: True
