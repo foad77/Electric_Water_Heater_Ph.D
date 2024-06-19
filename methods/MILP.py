@@ -69,7 +69,7 @@ for (a, b) in TIMEPOINTS:
 # when I wasd looking into CPLEX options, i saw the crossover function which is a genetic algorithm operator. it divesifyies the samples.
 # it seems that by default CPLEX do not! uses methaheuristic algorithm such as genetic algorithm.
 # by adding the 'set barrier crossover 2' option, the our method runs much much faster.
-
+""" commenting the CPLEX options
 optimization_result = prob.solve(CPLEX_CMD(
         options=['set emphasis mip 4',
 #                 'set barrier crossover 2',
@@ -85,11 +85,13 @@ optimization_result = prob.solve(CPLEX_CMD(
                   'set workdir {}'.format(tempdir)
                           ],msg=1
       ))
+
+"""
 Three_Binary_Run_time=time.time() - ThreeBinary_start_time
 print(" %s seconds for Three binary (original) Model" % (time.time() - ThreeBinary_start_time))
 #=================================
 # these are other solves that can be used to solve the model
-#optimization_result = prob.solve(PULP_CBC_CMD(msg=0))
+optimization_result = prob.solve(PULP_CBC_CMD(msg=0))
 #optimization_result = prob.solve(CPLEX_PY(mip=True,msg=True))
 #optimization_result = prob.solve(GUROBI_CMD(msg=0))
 #       optimization_result = prob.solve(GLPK_CMD(msg=0))
