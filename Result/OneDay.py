@@ -106,9 +106,9 @@ x_labels = [t[:2]+t[3:] for t in x_labels] # drop third character
 actual_temp_ax.set_xticklabels(x_labels)
 
 if os.name == 'nt':  # Windows
-    output_dir = 'Graphs\\OneDay'
+    output_dir = 'Result\\Graphs\\OneDay'
 else:  # macOS/Linux
-    output_dir = 'Graphs/OneDay'
+    output_dir = 'Result/Graphs/OneDay'
 
 # Ensure the directory exists
 if not os.path.exists(output_dir):
