@@ -69,12 +69,10 @@ for (a, b) in TIMEPOINTS:
          i_prev = b - 1
          d_prev = a
         prob += (conservative_sim_tank_temp[a,b] == sim_tank_temp[d_prev,i_prev]+(- NRG_withdrawn_Solar[a,b]) / degree_of_water_per_kwh )  
-        if version ==3:
-           prob += (sim_tank_temp[a,b]*degree_of_water_per_kwh == conservative_sim_tank_temp[a,b]*degree_of_water_per_kwh + (NRG_total[a,b]) 
+
+        prob += (sim_tank_temp[a,b]*degree_of_water_per_kwh == conservative_sim_tank_temp[a,b]*degree_of_water_per_kwh + (NRG_total[a,b]) 
                - heat_loss_rate *degree_of_water_per_kwh*(conservative_sim_tank_temp[a,b] - t_amb[current_day,b]))
-        if version ==2:
-           prob += (sim_tank_temp[a,b] == conservative_sim_tank_temp[a,b] + (NRG_total[a,b]) / degree_of_water_per_kwh
-               - heat_loss_rate * (conservative_sim_tank_temp[a,b] - t_amb[current_day,b]))
+
 #=================================
 # solves the problem using CPLEX.
 optimization_result = prob.solve(CPLEX_CMD(

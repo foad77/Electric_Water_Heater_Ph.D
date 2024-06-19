@@ -105,8 +105,23 @@ x_labels = [x.get_text() for x in actual_temp_ax.get_xticklabels()]
 x_labels = [t[:2]+t[3:] for t in x_labels] # drop third character
 actual_temp_ax.set_xticklabels(x_labels)
 
+if os.name == 'nt':  # Windows
+    output_dir = 'Graphs\\OneDay'
+else:  # macOS/Linux
+    output_dir = 'Graphs/OneDay'
+
+# Ensure the directory exists
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+# Debugging: print the absolute path to ensure correctness
+absolute_output_dir = os.path.abspath(output_dir)
+
 if len(sys.argv) == 1:
-  fig.savefig('Graphs/OneDay/({},{})Daily.svg'.format(current_day,penalty_vector[j]))
+    save_path = os.path.join(absolute_output_dir, '({}, {})Daily.svg'.format(current_day, penalty_vector[j]))
+    print(f"Saving to file: {save_path}")  # Debugging: print the save path
+    fig.savefig(save_path)
+    
 fig.show()
 #fig.close()            
 print("--- %s seconds for total Run" % (time.time() - start_time))            
