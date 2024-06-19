@@ -121,6 +121,10 @@ celerybeat.pid
 # VS code file
 .vscode/
 
+# ignoring the SVG files
+
+*.svg
+
 # Python Cach files
 __pycache__/
 # Environments
