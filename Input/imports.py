@@ -44,9 +44,20 @@ import yaml
 with open('config.yaml', 'r') as f:
     config = yaml.safe_load(f)
 
+# Get the path of the temporary configuration file from the environment variable
+temp_config_path = os.getenv('TEMP_CONFIG_PATH')
+
+# Read the temporary configuration file
+with open(temp_config_path, 'r') as temp_config_file:
+    config_temp = yaml.safe_load(temp_config_file)
+
+# Access the "tomorrow" value
+tomorrow = int(config_temp['tomorrow'])
+methods = config_temp['method']
+
 # Get the variables from the configuration file
-methods = config['methods']
-tomorrow = config['tomorrow']
+#methods = config['methods']
+#tomorrow = config['tomorrow']
 test_mode = config['test_mode']
 stochastic_status = config['stochastic_status']
 lookback_length = config['lookback_length']

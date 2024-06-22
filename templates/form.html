@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EWH Input Form</title>
+</head>
+<body>
+    <h1>Enter EWH Parameters</h1>
+    <form action="/" method="post">
+        <label for="tomorrow">Tomorrow's Value:</label>
+        <input type="text" id="tomorrow" name="tomorrow" required><br>
+        
+        <label for="method">Select Method(s):</label><br>
+        <input type="checkbox" id="MILP" name="method" value="MILP">
+        <label for="MILP">MILP</label><br>
+        <input type="checkbox" id="Du" name="method" value="Du">
+        <label for="Du">Du</label><br>
+        <input type="checkbox" id="Apt" name="method" value="Apt">
+        <label for="Apt">Apt</label><br>
+        <input type="checkbox" id="Fixed" name="method" value="Fixed">
+        <label for="Fixed">Fixed</label><br>
+        <input type="checkbox" id="Solar" name="method" value="Solar">
+        <label for="Solar">Solar</label><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

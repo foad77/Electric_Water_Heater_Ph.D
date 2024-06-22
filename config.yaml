@@ -5,7 +5,7 @@ methods: ["MILP", "Du", "Apt","Fixed", "Solar"] #methods=["MILP", "Du","Apt","Py
 # defines the length of tomorrow days. e.g., if 'loop' is '4' and 'tomorrow' is 300, it runs the code for days 300, 301, 302 and 303
 # then the average of these 4 days is reported as the expected cost. this value is different from 'lookback_length' which loops through
 # past days for each tomorrow day.
-tomorrow: 163
+#tomorrow: 163
 
 # if true, it won't log anything. used for when not wanting anything to be saved. since it won't run again and the log file must
 # be delected eveytime
