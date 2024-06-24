@@ -2,26 +2,81 @@
 <html>
 <head>
     <title>EWH Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Enter EWH Parameters</h1>
-    <form action="/" method="post">
-        <label for="tomorrow">Tomorrow's Value:</label>
-        <input type="text" id="tomorrow" name="tomorrow" required><br>
-        
-        <label for="method">Select Method(s):</label><br>
-        <input type="checkbox" id="MILP" name="method" value="MILP">
-        <label for="MILP">MILP</label><br>
-        <input type="checkbox" id="Du" name="method" value="Du">
-        <label for="Du">Du</label><br>
-        <input type="checkbox" id="Apt" name="method" value="Apt">
-        <label for="Apt">Apt</label><br>
-        <input type="checkbox" id="Fixed" name="method" value="Fixed">
-        <label for="Fixed">Fixed</label><br>
-        <input type="checkbox" id="Solar" name="method" value="Solar">
-        <label for="Solar">Solar</label><br>
-        
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Enter EWH Parameters</h1>
+        <form action="/" method="post">
+            <div class="form-group">
+                <label for="tomorrow">Tomorrow's Value:</label>
+                <input type="text" id="tomorrow" name="tomorrow" required>
+            </div>
+            <div class="form-group">
+                <label for="t_max">Maximum Temperature:</label>
+                <input type="text" id="t_max" name="t_max" required>
+            </div>
+            <div class="form-group">
+                <label for="t_min">Minimum Temperature:</label>
+                <input type="text" id="t_min" name="t_min" required>
+            </div>
+            <div class="form-group">
+                <label for="t_min_shortfall">Minimum Shortfall Temperature:</label>
+                <input type="text" id="t_min_shortfall" name="t_min_shortfall" required>
+            </div>
+            <div class="form-group">
+                <label for="max_energy_input_per_hour">Maximum Energy Input Per Hour:</label>
+                <input type="text" id="max_energy_input_per_hour" name="max_energy_input_per_hour" required>
+            </div>
+            <div class="form-group">
+                <label for="v">Volume:</label>
+                <input type="text" id="v" name="v" required>
+            </div>
+            <div class="form-group">
+                <label for="method">Select Method(s):</label>
+                <input type="checkbox" id="MILP" name="method" value="MILP">
+                <label for="MILP">MILP</label><br>
+                <input type="checkbox" id="Du" name="method" value="Du">
+                <label for="Du">Du</label><br>
+                <input type="checkbox" id="Apt" name="method" value="Apt">
+                <label for="Apt">Apt</label><br>
+                <input type="checkbox" id="Fixed" name="method" value="Fixed">
+                <label for="Fixed">Fixed</label><br>
+                <input type="checkbox" id="Solar" name="method" value="Solar">
+                <label for="Solar">Solar</label><br>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

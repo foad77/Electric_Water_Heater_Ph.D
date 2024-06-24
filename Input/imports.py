@@ -51,13 +51,16 @@ temp_config_path = os.getenv('TEMP_CONFIG_PATH')
 with open(temp_config_path, 'r') as temp_config_file:
     config_temp = yaml.safe_load(temp_config_file)
 
-# Access the "tomorrow" value
+# Access input valies from the temp.yaml file
 tomorrow = int(config_temp['tomorrow'])
 methods = config_temp['method']
-
-# Get the variables from the configuration file
-#methods = config['methods']
-#tomorrow = config['tomorrow']
+t_max = config_temp['t_max']
+t_min = config_temp['t_min']
+t_min_shortfall = config_temp['t_min_shortfall']
+max_energy_input_per_hour = config_temp['max_energy_input_per_hour']
+v = config_temp['v']
+####################################################################
+# Get the variables from the config.yaml file
 test_mode = config['test_mode']
 stochastic_status = config['stochastic_status']
 lookback_length = config['lookback_length']
@@ -69,12 +72,12 @@ resolution = config['resolution']
 penalty_vector = config['penalty_vector']
 Flate_rate_vector = config['Flate_rate_vector']
 Initial_Temperature_Status = config['Initial_Temperature_Status']
-t_max = config['t_max']
-t_min = config['t_min']
-t_min_shortfall = config['t_min_shortfall']
-max_energy_input_per_hour = config['max_energy_input_per_hour']
+#t_max = config['t_max']
+#t_min = config['t_min']
+#t_min_shortfall = config['t_min_shortfall']
+#max_energy_input_per_hour = config['max_energy_input_per_hour']
 specific_heat = config['specific_heat']
-v = config['v']
+#v = config['v']
 heat_loss_rate = config['heat_loss_rate']
 problem_formulator_status = config['problem_formulator_status']
 Conservative_Penalty_Status = config['Conservative_Penalty_Status']
