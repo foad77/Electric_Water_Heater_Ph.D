@@ -1,82 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EWH Input Form</title>
+    <title>EWH Multi-Step Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-color: #eee;
         }
-        .container {
-            width: 50%;
-            margin: 0 auto;
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0rem rgba(0,123,255,.25);
         }
-        .form-group {
-            margin-bottom: 15px;
+        .btn-secondary:focus {
+            box-shadow: 0 0 0 0rem rgba(108,117,125,.5);
         }
-        label {
+        .close:focus {
+            box-shadow: 0 0 0 0rem rgba(108,117,125,.5);
+        }
+        .mt-200 {
+            margin-top: 200px;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
             display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"], select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Enter EWH Parameters</h1>
-        <form action="/" method="post">
-            <div class="form-group">
-                <label for="tomorrow">Tomorrow's Value:</label>
-                <input type="text" id="tomorrow" name="tomorrow" required>
+    <div class="container mt-200">
+        <div id="smartwizard">
+            <ul>
+                <li><a href="#step-1">Step 1<br /><small>Select Methods</small></a></li>
+                <li><a href="#step-2">Step 2<br /><small>Consumption Pattern</small></a></li>
+                <li><a href="#step-3">Step 3<br /><small>Temperature Inputs</small></a></li>
+                <li><a href="#step-4">Step 4<br /><small>Volume & Energy</small></a></li>
+            </ul>
+            <div>
+                <form action="/" method="post">
+                    <div id="step-1" class="tab-pane" role="tabpanel">
+                        <div class="form-group">
+                            <label for="method">Select Method(s):</label><br>
+                            <input type="checkbox" id="MILP" name="method" value="MILP">
+                            <label for="MILP">MILP</label><br>
+                            <input type="checkbox" id="Du" name="method" value="Du">
+                            <label for="Du">Du</label><br>
+                            <input type="checkbox" id="Apt" name="method" value="Apt">
+                            <label for="Apt">Apt</label><br>
+                            <input type="checkbox" id="Fixed" name="method" value="Fixed">
+                            <label for="Fixed">Fixed</label><br>
+                            <input type="checkbox" id="Solar" name="method" value="Solar">
+                            <label for="Solar">Solar</label><br>
+                        </div>
+                    </div>
+                    <div id="step-2" class="tab-pane" role="tabpanel">
+                        <div class="form-group">
+                            <label for="tomorrow">Tomorrow's Value:</label>
+                            <input type="text" id="tomorrow" name="tomorrow" class="form-control" required>
+                        </div>
+                    </div>
+                    <div id="step-3" class="tab-pane" role="tabpanel">
+                        <div class="form-group">
+                            <label for="t_max">Maximum Temperature:</label>
+                            <input type="text" id="t_max" name="t_max" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="t_min">Minimum Temperature:</label>
+                            <input type="text" id="t_min" name="t_min" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="t_min_shortfall">Minimum Shortfall Temperature:</label>
+                            <input type="text" id="t_min_shortfall" name="t_min_shortfall" class="form-control" required>
+                        </div>
+                    </div>
+                    <div id="step-4" class="tab-pane" role="tabpanel">
+                        <div class="form-group">
+                            <label for="max_energy_input_per_hour">Maximum Energy Input Per Hour:</label>
+                            <input type="text" id="max_energy_input_per_hour" name="max_energy_input_per_hour" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="v">Volume:</label>
+                            <input type="text" id="v" name="v" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="t_max">Maximum Temperature:</label>
-                <input type="text" id="t_max" name="t_max" required>
-            </div>
-            <div class="form-group">
-                <label for="t_min">Minimum Temperature:</label>
-                <input type="text" id="t_min" name="t_min" required>
-            </div>
-            <div class="form-group">
-                <label for="t_min_shortfall">Minimum Shortfall Temperature:</label>
-                <input type="text" id="t_min_shortfall" name="t_min_shortfall" required>
-            </div>
-            <div class="form-group">
-                <label for="max_energy_input_per_hour">Maximum Energy Input Per Hour:</label>
-                <input type="text" id="max_energy_input_per_hour" name="max_energy_input_per_hour" required>
-            </div>
-            <div class="form-group">
-                <label for="v">Volume:</label>
-                <input type="text" id="v" name="v" required>
-            </div>
-            <div class="form-group">
-                <label for="method">Select Method(s):</label>
-                <input type="checkbox" id="MILP" name="method" value="MILP">
-                <label for="MILP">MILP</label><br>
-                <input type="checkbox" id="Du" name="method" value="Du">
-                <label for="Du">Du</label><br>
-                <input type="checkbox" id="Apt" name="method" value="Apt">
-                <label for="Apt">Apt</label><br>
-                <input type="checkbox" id="Fixed" name="method" value="Fixed">
-                <label for="Fixed">Fixed</label><br>
-                <input type="checkbox" id="Solar" name="method" value="Solar">
-                <label for="Solar">Solar</label><br>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+        </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#smartwizard').smartWizard({
+                selected: 0,
+                theme: 'arrows',
+                transitionEffect: 'fade',
+                showStepURLhash: false,
+                toolbarSettings: {
+                    toolbarPosition: 'bottom',
+                    toolbarExtraButtons: []
+                }
+            });
+        });
+    </script>
 </body>
 </html>
