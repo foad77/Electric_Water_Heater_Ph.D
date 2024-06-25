@@ -8,6 +8,7 @@
     <style>
         body {
             background-color: #eee;
+            font-size: 1.2rem; /* Increase the base font size */
         }
         .form-control:focus {
             color: #495057;
@@ -23,7 +24,10 @@
             box-shadow: 0 0 0 0rem rgba(108,117,125,.5);
         }
         .mt-200 {
-            margin-top: 200px;
+            margin-top: 50px; /* Reduce top margin */
+        }
+        .container {
+            max-width: 1200px; /* Increase the maximum width of the container */
         }
         .tab-pane {
             display: none;
@@ -31,10 +35,37 @@
         .tab-pane.active {
             display: block;
         }
+        .form-group label {
+            font-size: 1.2rem; /* Increase label font size */
+        }
+        .form-group input {
+            padding: 10px; /* Increase input padding */
+            font-size: 1.2rem; /* Increase input font size */
+        }
+        .btn-primary {
+            padding: 10px 20px; /* Increase button padding */
+            font-size: 1.2rem; /* Increase button font size */
+        }
     </style>
 </head>
 <body>
     <div class="container mt-200">
+        <div class="summary">
+            <h2>About This Application</h2>
+            <p>
+                This web application is designed based on the research paper 
+                titled <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213138820312613" target="_blank">"Stochastic optimization of comfort-centered model of electrical water heater using mixed integer linear programming"</a>. 
+                The primary objective is to optimize the operation of electric water heaters (EWH) by balancing between
+                 cost savings and user comfort. The approach utilizes mixed-integer linear programming (MILP) to account
+                  for dynamic electricity prices and stochastic hot water withdrawal patterns. This innovative method 
+                  ensures that the EWH operates efficiently, minimizing energy costs while maintaining user comfort even 
+                  under varying consumption patterns.
+            </p>
+            
+            <p>
+                The model allows the temperature to fall below the minimum threshold when the probability of hot water usage is low, thereby saving energy without compromising comfort. This application demonstrates the practical implementation of this research, allowing users to configure various parameters and optimize their EWH's performance accordingly.
+            </p>
+        </div>
         <div id="smartwizard">
             <ul>
                 <li><a href="#step-1">Step 1<br /><small>Select Methods</small></a></li>
@@ -48,17 +79,29 @@
                         <div class="form-group">
                             <label for="method">Select Method(s):</label><br>
                             <input type="checkbox" id="MILP" name="method" value="MILP">
-                            <label for="MILP">MILP</label><br>
+                            <label for="MILP">MILP</label>
+                            <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213138820312613" target="_blank">Stochastic optimization of comfort-centered model of electrical water heater using mixed integer linear programming</a>
+                            <br>
                             <input type="checkbox" id="Du" name="method" value="Du">
-                            <label for="Du">Du</label><br>
+                            <label for="Du">Du&Lu</label>
+                            <a href="https://ieeexplore.ieee.org/abstract/document/5765461" target="_blank">Appliance Commitment for Household Load Scheduling</a>
+                            <br>
                             <input type="checkbox" id="Apt" name="method" value="Apt">
-                            <label for="Apt">Apt</label><br>
+                            <label for="Apt">Apt&Goh</label>
+                            <a href="https://www.cmu.edu/ceic/assets/docs/publications/working-papers/ceic-04-02.pdf" target="_blank">Consumer Strategies for Controlling Electric Water Heaters under Dynamic Pricing</a>
+                            <br>
                             <input type="checkbox" id="Fixed" name="method" value="Fixed">
-                            <label for="Fixed">Fixed</label><br>
+                            <label for="Fixed">Fixed_Thermostat</label>
+                            <span> - This simulates the performance of a regular EWH with a fixed thermostat setpoint.</span>
+                            <br>
                             <input type="checkbox" id="Solar" name="method" value="Solar">
-                            <label for="Solar">Solar</label><br>
+                            <label for="Solar">Solar_EWH</label>
+                            <a href="https://ieeexplore.ieee.org/abstract/document/9654701" target="_blank">Increasing PV Self-Consumption Using Electric Water Heater Thermal Capacity</a>
+                            <br>
                         </div>
                     </div>
+                    
+                    
                     <div id="step-2" class="tab-pane" role="tabpanel">
                         <div class="form-group">
                             <label for="tomorrow">Tomorrow's Value:</label>

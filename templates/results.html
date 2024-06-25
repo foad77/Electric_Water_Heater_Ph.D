@@ -2,11 +2,37 @@
 <html>
 <head>
     <title>EWH Results</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            background-color: #eee;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .result-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Optimization Results</h1>
-    <img src="{{ url_for('static', filename='output.svg') }}" alt="Results">
-    <br>
-    <a href="/">Back to form</a>
+    <div class="container text-center">
+        <h1>Optimization Results</h1>
+        <img src="{{ url_for('static', filename='output.svg') }}" alt="Results" class="result-image">
+        <br>
+        <a href="/" class="btn btn-primary btn-back">Back to form</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
