@@ -75,20 +75,20 @@ for (a, b) in TIMEPOINTS:
 
 #=================================
 # solves the problem using CPLEX.
-optimization_result = prob.solve(CPLEX_CMD(
-        options=['set emphasis mip 4',
-                 'set mip tolerances mipgap {}'.format(Optimality_gap),
-                 'set workmem 20000',
-                 'set timelimit {}'.format(Run_Time), 
-                 'set mip strategy file 3', 
-                 'set workdir {}'.format(tempdir)
-                         ],msg=1
-     ))
-Solar_time=time.time() - ThreeBinary_start_time
-print(" %s Solar Model" % (time.time() - start_time))
+#optimization_result = prob.solve(CPLEX_CMD(
+#        options=['set emphasis mip 4',
+#                 'set mip tolerances mipgap {}'.format(Optimality_gap),
+#                 'set workmem 20000',
+#                 'set timelimit {}'.format(Run_Time), 
+#                 'set mip strategy file 3', 
+#                 'set workdir {}'.format(tempdir)
+#                         ],msg=1
+#     ))
+#Solar_time=time.time() - ThreeBinary_start_time
+#print(" %s Solar Model" % (time.time() - start_time))
 #=================================
 # these are other solves that can be used to solve the model
-#optimization_result = prob.solve(PULP_CBC_CMD(msg=0))
+optimization_result = prob.solve(PULP_CBC_CMD(msg=0))
 #optimization_result = prob.solve(CPLEX_PY(mip=True,msg=True))
 #optimization_result = prob.solve(GUROBI_CMD(msg=0))
 #       optimization_result = prob.solve(GLPK_CMD(msg=0))

@@ -46,6 +46,11 @@
             padding: 10px 20px; /* Increase button padding */
             font-size: 1.2rem; /* Increase button font size */
         }
+        .attribution {
+            margin-top: 20px;
+            font-size: 1rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -53,8 +58,8 @@
         <div class="summary">
             <h2>About This Application</h2>
             <p>
-                This web application is designed based on the research paper 
-                titled <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213138820312613" target="_blank">"Stochastic optimization of comfort-centered model of electrical water heater using mixed integer linear programming"</a>. 
+                This web application is designed based on the research paper titled 
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213138820312613" target="_blank">"Stochastic optimization of comfort-centered model of electrical water heater using mixed integer linear programming"</a>. 
                 The primary objective is to optimize the operation of electric water heaters (EWH) by balancing between
                  cost savings and user comfort. The approach utilizes mixed-integer linear programming (MILP) to account
                   for dynamic electricity prices and stochastic hot water withdrawal patterns. This innovative method 
@@ -64,6 +69,9 @@
             
             <p>
                 The model allows the temperature to fall below the minimum threshold when the probability of hot water usage is low, thereby saving energy without compromising comfort. This application demonstrates the practical implementation of this research, allowing users to configure various parameters and optimize their EWH's performance accordingly.
+            </p>
+            <p>                
+                You can find the source code for this web application, including the optimization problems in this <a href="https://github.com/foad77/Electric_Water_Heater_Ph.D/tree/Simple_EWH" target="_blank">"Github"</a> page.               
             </p>
         </div>
         <div id="smartwizard">
@@ -76,6 +84,12 @@
             <div>
                 <form action="/" method="post">
                     <div id="step-1" class="tab-pane" role="tabpanel">
+                        <p>
+                            In this tab, you can choose from 5 different methods to simulate the performance of EWH with different objectives and methods that are proposed in the scientific community.
+                            The first one, "MILP", represents the paper that minimized cost & user discomfort simultaneously. The "Du&Lu" simulates a highly cited paper in regards to EWH optimization, taking into account both the price and user consumption pattern.
+                            The "Apt&Goh" method represents a simple method that takes into account only the price. It is simple but practical. The "Fixed_Thermostat" method simulates the performance of a regular EWH found in most homes, where the thermostat setpoint is fixed.
+                            The last method is based on the MILP paper. Not only can it use regular electricity from the grid, but it can also absorb energy from PV panels in the middle of the day, reducing the need for energy from the grid and maximizing PV self-consumption.
+                        </p>
                         <div class="form-group">
                             <label for="method">Select Method(s):</label><br>
                             <input type="checkbox" id="MILP" name="method" value="MILP">
@@ -101,39 +115,64 @@
                         </div>
                     </div>
                     
-                    
                     <div id="step-2" class="tab-pane" role="tabpanel">
+                        <p>
+                            You can choose from a pool of 365 pairs of price and energy consumption patterns. 
+                            These patterns are drawn from an annual EWH user consumption pattern and the corresponding
+                             electricity prices.
+                        </p>
+                        
                         <div class="form-group">
                             <label for="tomorrow">Tomorrow's Value:</label>
                             <input type="text" id="tomorrow" name="tomorrow" class="form-control" required>
                         </div>
                     </div>
                     <div id="step-3" class="tab-pane" role="tabpanel">
+                        <p>
+                            Maximum allowed temperature (usually between 80 to 100 degrees Celsius)
+                        </p>
                         <div class="form-group">
                             <label for="t_max">Maximum Temperature:</label>
                             <input type="text" id="t_max" name="t_max" class="form-control" required>
                         </div>
+                        <p>
+                            Minimum usable temperature by the user (usually between 15 to 30 degrees Celsius)
+                        </p>
                         <div class="form-group">
                             <label for="t_min">Minimum Temperature:</label>
                             <input type="text" id="t_min" name="t_min" class="form-control" required>
                         </div>
+                        <p>
+                            The Temperature below which the user will feel discomfort (usually between 40 to 45 degrees Celsius)
+                        </p>
                         <div class="form-group">
                             <label for="t_min_shortfall">Minimum Shortfall Temperature:</label>
                             <input type="text" id="t_min_shortfall" name="t_min_shortfall" class="form-control" required>
                         </div>
                     </div>
                     <div id="step-4" class="tab-pane" role="tabpanel">
+                        <p>
+                             (usually between 1 to 8 KWH)
+                        </p>
                         <div class="form-group">
                             <label for="max_energy_input_per_hour">Maximum Energy Input Per Hour:</label>
                             <input type="text" id="max_energy_input_per_hour" name="max_energy_input_per_hour" class="form-control" required>
                         </div>
+                        <p>
+                            (usually between 50 to 300 Liters)
+                       </p>
                         <div class="form-group">
                             <label for="v">Volume:</label>
                             <input type="text" id="v" name="v" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
                     </div>
+                    <div class="attribution">
+                        <p>By: <a href="http://drfoadnajafi.tech" target="_blank">Dr. Foad Najafi</a></p>
+                    </div>
+                    <div id="smartwizard">
                 </form>
+
             </div>
         </div>
     </div>
