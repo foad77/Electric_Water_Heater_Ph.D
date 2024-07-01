@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Energy Trading</title>
 
     <meta content="" name="description">
@@ -58,6 +59,20 @@
             margin-top: 20px;
             font-size: 1rem;
             text-align: center;
+        }
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%; /* Full width for mobile */
+                padding: 15px;
+            }
+            body {
+                font-size: 1rem; /* Decrease font size for mobile */
+            }
+            .form-group label, .form-group input, .btn-primary {
+                font-size: 1rem; /* Adjust font size for inputs and buttons */
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -178,9 +193,7 @@
                     <div class="attribution">
                         <p>By: <a href="http://drfoadnajafi.tech" target="_blank">Dr. Foad Najafi</a></p>
                     </div>
-                    <div id="smartwizard">
                 </form>
-
             </div>
         </div>
     </div>

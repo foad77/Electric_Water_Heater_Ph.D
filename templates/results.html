@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>EWH Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css">
@@ -9,19 +10,36 @@
         body {
             background-color: #eee;
             font-family: Arial, sans-serif;
+            font-size: 1.2rem; /* Increase the base font size */
         }
         .container {
             margin-top: 50px;
+            max-width: 1200px; /* Set a maximum width for the container */
         }
         .result-image {
-            width: 100%;
-            max-width: 800px;
+            width: 100%; /* Full width */
             height: auto;
             margin: 0 auto;
             display: block;
         }
         .btn-back {
             margin-top: 20px;
+            padding: 10px 20px; /* Increase button padding */
+            font-size: 1.2rem; /* Increase button font size */
+        }
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 100%; /* Full width for mobile */
+            }
+            body {
+                font-size: 1rem; /* Decrease font size for mobile */
+            }
+            .btn-back {
+                font-size: 1rem; /* Adjust button font size for mobile */
+                padding: 8px;
+            }
         }
     </style>
 </head>
