@@ -44,7 +44,7 @@ for b in interval_set:
         q_supplied=q_supplied+q_sup[b]
 #=============================
 #calculating costs
-electrical_du= sum(price_of_power[current_day,b] * q_sup[b] for b in interval_set)
+electrical_du= sum(price_of_power[current_day,b] *q_sup[b] for b in interval_set)
 shortfall_du = sum(NRG_shortfall[b] for b in interval_set)
 print ("")
 #===========================
@@ -93,3 +93,4 @@ Du_dict={ 'Exp_C_Du':electrical_du,'Exp_Dis_Du':shortfall_du,'Act_Dis_Du':shortf
  'LastTemp_Du':t_tank_actual[max(interval_set)],'Act_C_Du':cost_du_actual,
                                                                           }
 methods_dictionary.update(Du_dict)
+

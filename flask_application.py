@@ -1,8 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-import subprocess
-import os
-import yaml
-import uuid
+import subprocess , os , yaml , uuid , pandas as pd
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Required for session
@@ -52,7 +49,79 @@ def form():
 
 @app.route('/results')
 def results():
-    return render_template('results.html')
+    csv_file_path = 'OneDayDF.csv'  # Ensure this path is correct
+
+    # Check if file exists before proceeding
+    if not os.path.exists(csv_file_path):
+        return "CSV file not found", 404
+
+    # Read the CSV file into a DataFrame
+    df = pd.read_csv(csv_file_path)
+
+    # Log the columns present in the DataFrame
+    app.logger.debug(f"CSV Columns: {df.columns.tolist()}")
+
+    # Get selected methods from form submission (assuming it's stored in session or passed here)
+    selected_methods = ['MILP', 'Du', 'Apt', 'Fixed', 'Solar']  # Replace with the actual methods from the form
+
+    # Initialize total_cost, savings, discomfort_cost, and discomfort_savings dictionaries
+    total_cost = {}
+    savings = {}
+    discomfort_cost = {}
+    discomfort_savings = {}
+
+    # Mapping columns to methods
+    cost_mapping = {
+        'MILP': 'Act_C_MILP',
+        'Du': 'Act_C_Du',
+        'Apt': 'Act_C_Apt',
+        'Fixed': 'Act_C_Fixed',
+        'Solar': 'Act_C_Solar'
+    }
+    
+    discomfort_mapping = {
+        'MILP': 'Act_Dis_MILP',
+        'Du': 'Act_Dis_Du',
+        'Apt': 'Act_Dis_Apt',
+        'Fixed': 'Act_Dis_Fixed',
+        'Solar': 'Act_Dis_Solar'
+    }
+
+    fixed_setpoint_cost = 0
+    fixed_setpoint_discomfort = 0
+
+    for method in selected_methods:
+        cost_column = cost_mapping.get(method)
+        discomfort_column = discomfort_mapping.get(method)
+
+        if cost_column in df.columns:
+            total_value = df[cost_column].sum()
+            total_cost[method] = round(total_value, 2)
+            if method == 'Fixed':
+                fixed_setpoint_cost = total_value
+
+        if discomfort_column in df.columns:
+            discomfort_value = df[discomfort_column].sum()
+            discomfort_cost[method] = round(discomfort_value, 2)
+            if method == 'Fixed':
+                fixed_setpoint_discomfort = discomfort_value
+
+    # Calculate savings compared to Fixed setpoint
+    for method in total_cost:
+        if method != 'Fixed' and fixed_setpoint_cost > 0:
+            savings[method] = round((fixed_setpoint_cost - total_cost[method]) / fixed_setpoint_cost * 100, 2)
+        else:
+            savings[method] = 0  # No savings calculation for Fixed method itself
+
+    # Calculate discomfort savings compared to Fixed setpoint
+    for method in discomfort_cost:
+        if method != 'Fixed' and fixed_setpoint_discomfort > 0:
+            discomfort_savings[method] = round((fixed_setpoint_discomfort - discomfort_cost[method]) / fixed_setpoint_discomfort * 100, 2)
+        else:
+            discomfort_savings[method] = 0  # No discomfort savings calculation for Fixed method itself
+
+    # Render the results page with the calculated totals, savings, and discomfort
+    return render_template('results.html', total_cost=total_cost, savings=savings, discomfort_cost=discomfort_cost, discomfort_savings=discomfort_savings)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)

@@ -127,9 +127,11 @@
                             <label for="Apt">Apt&Goh</label>
                             <a href="https://www.cmu.edu/ceic/assets/docs/publications/working-papers/ceic-04-02.pdf" target="_blank">Consumer Strategies for Controlling Electric Water Heaters under Dynamic Pricing</a>
                             <br>
-                            <input type="checkbox" id="Fixed" name="method" value="Fixed">
+                            <input type="checkbox" id="Fixed" name="method" value="Fixed" checked disabled>
                             <label for="Fixed">Fixed_Thermostat</label>
                             <span> - This simulates the performance of a regular EWH with a fixed thermostat setpoint.</span>
+                            <!-- Hidden input to ensure Fixed_Thermostat is included in the form submission -->
+                            <input type="hidden" name="method" value="Fixed">
                             <br>
                             <input type="checkbox" id="Solar" name="method" value="Solar">
                             <label for="Solar">Solar_EWH</label>
@@ -165,13 +167,8 @@
                             <label for="t_min">Minimum Temperature:</label>
                             <input type="text" id="t_min" name="t_min" class="form-control" required>
                         </div>
-                        <p>
-                            The Temperature below which the user will feel discomfort (usually between 40 to 45 degrees Celsius)
-                        </p>
-                        <div class="form-group">
-                            <label for="t_min_shortfall">Minimum Shortfall Temperature:</label>
-                            <input type="text" id="t_min_shortfall" name="t_min_shortfall" class="form-control" required>
-                        </div>
+                        <!-- Add this hidden input -->
+                        <input type="hidden" id="t_min_shortfall" name="t_min_shortfall">
                     </div>
                     <div id="step-4" class="tab-pane" role="tabpanel">
                         <p>
@@ -215,5 +212,21 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get references to the Minimum Temperature and Minimum Shortfall Temperature fields
+            const tMinInput = document.getElementById('t_min');
+            const tMinShortfallInput = document.getElementById('t_min_shortfall');
+    
+            // Set the initial value of the Minimum Shortfall Temperature to the Minimum Temperature
+            tMinShortfallInput.value = tMinInput.value;
+    
+            // Add an event listener to update the Minimum Shortfall Temperature whenever Minimum Temperature changes
+            tMinInput.addEventListener('input', function() {
+                tMinShortfallInput.value = tMinInput.value;
+            });
+        });
+    </script>
+    
 </body>
 </html>

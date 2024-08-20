@@ -68,7 +68,7 @@ specific_heat: 0.001148
 v: 160
 
 # Heat loss rate for the optimization problem
-heat_loss_rate: 0.04
+heat_loss_rate: 0.0
 
 # the multiplication of volume*Specific_heat
 degree_of_water_per_kwh: 0.18368    #160*0.001148 

@@ -1,6 +1,8 @@
 
 #plot_data = pd.read_csv('Result/OutputFile.csv', index_col=0)
 plot_data=OneDayDF
+df = pd.DataFrame(methods_dictionary, index=[0])
+df.to_csv('OneDayDF.csv', index=False)
 #plot_data.index = pd.to_datetime(plot_data.index)
 plot_data.head()           
 if u'Arial' in mpl.rcParams['font.sans-serif']:

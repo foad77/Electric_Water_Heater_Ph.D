@@ -1,56 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EWH Results</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css">
-    <style>
-        body {
-            background-color: #eee;
-            font-family: Arial, sans-serif;
-            font-size: 1.2rem; /* Increase the base font size */
-        }
-        .container {
-            margin-top: 50px;
-            max-width: 1200px; /* Set a maximum width for the container */
-        }
-        .result-image {
-            width: 100%; /* Full width */
-            height: auto;
-            margin: 0 auto;
-            display: block;
-        }
-        .btn-back {
-            margin-top: 20px;
-            padding: 10px 20px; /* Increase button padding */
-            font-size: 1.2rem; /* Increase button font size */
-        }
-        /* Responsive styling */
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-                max-width: 100%; /* Full width for mobile */
-            }
-            body {
-                font-size: 1rem; /* Decrease font size for mobile */
-            }
-            .btn-back {
-                font-size: 1rem; /* Adjust button font size for mobile */
-                padding: 8px;
-            }
-        }
-    </style>
+   <title>EWH Results</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css">
+   <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css">
+   <style>
+       body {
+           background-color: #eee;
+           font-family: Arial, sans-serif;
+           font-size: 1.2rem;
+       }
+       .container {
+           margin-top: 50px;
+           max-width: 1200px;
+       }
+       .result-image {
+           width: 100%;
+           height: auto;
+           margin: 0 auto;
+           display: block;
+       }
+       .btn-back {
+           margin-top: 20px;
+           padding: 10px 20px;
+           font-size: 1.2rem;
+       }
+       @media (max-width: 768px) {
+           .container {
+               padding: 15px;
+               max-width: 100%;
+           }
+           body {
+               font-size: 1rem;
+           }
+           .btn-back {
+               font-size: 1rem;
+               padding: 8px;
+           }
+       }
+   </style>
 </head>
 <body>
-    <div class="container text-center">
-        <h1>Optimization Results</h1>
-        <img src="{{ url_for('static', filename='output.svg') }}" alt="Results" class="result-image">
-        <br>
-        <a href="/" class="btn btn-primary btn-back">Back to form</a>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+   <div class="container">
+       <h1>Energy Optimization Results</h1>
+
+       <h2>Graphical Representation</h2>
+       <p>The graph below visualizes the energy input patterns:</p>
+       <img src="{{ url_for('static', filename='output.svg') }}" alt="Optimization Results Graph" class="result-image">
+
+       <h2>Summary of Results</h2>
+       <p>The following summary provides the total costs for each method, as well as the savings compared to the Fixed setpoint method:</p>
+
+       <p>The above graph shows the performance of methods MILP, Du, Apt, and Solar, while each method had access to the same input data (Price and Energy consumption). The Fixed setpoint method is used as a benchmark for comparing how much saving each method has in comparison to it.</p>
+       
+       <p>For example, in this simulation:</p>
+       <ul>
+           <li>MILP method cost: {{ total_cost['MILP'] }} units, saving: {{ savings['MILP'] }}% for electric cost. The energy shortfall is {{ discomfort_cost['MILP'] }} units, lowering discomfort by {{ discomfort_savings['MILP'] }}%.</li>
+           <li>Du method cost: {{ total_cost['Du'] }} units, saving: {{ savings['Du'] }}% for electric cost. The energy shortfall is {{ discomfort_cost['Du'] }} units, lowering discomfort by {{ discomfort_savings['Du'] }}%.</li>
+           <li>Apt method cost: {{ total_cost['Apt'] }} units, saving: {{ savings['Apt'] }}% for electric cost. The energy shortfall is {{ discomfort_cost['Apt'] }} units, lowering discomfort by {{ discomfort_savings['Apt'] }}%.</li>
+           <li>Solar method cost: {{ total_cost['Solar'] }} units, saving: {{ savings['Solar'] }}% for electric cost. The energy shortfall is {{ discomfort_cost['Solar'] }} units, lowering discomfort by {{ discomfort_savings['Solar'] }}%.</li>
+           <li>Fixed setpoint method cost: {{ total_cost['Fixed'] }} units. The energy shortfall is {{ discomfort_cost['Fixed'] }} units.</li>
+       </ul>
+
+       <p>The solar method cost is around {{ total_cost['Solar'] }} units. If this method's cost is near zero, it means that the consumption happened mostly when solar energy was available. To simplify this simulation and avoid complications regarding energy loss calculation, the energy loss rate was considered zero. (In reality, EWHs have good insulation, with around 1% energy loss per hour).</p>
+
+       <!-- Add a button to go back to the main page -->
+       <a href="/" class="btn btn-primary btn-back">Return to Input Page</a>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
