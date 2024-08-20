@@ -1,6 +1,3 @@
-# Writing the README content to a markdown file
-
-readme_content = """
 # Energy Trading Web Application
 
 This web application is designed to optimize the operation of Electric Water Heaters (EWH) by balancing cost savings and user comfort. The application is based on advanced energy optimization methods, including mixed-integer linear programming (MILP), and simulates the performance of different methods to compare their effectiveness in reducing energy costs and maintaining comfort.
