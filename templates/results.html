@@ -9,28 +9,44 @@
         body {
             background-color: #eee;
             font-family: Arial, sans-serif;
+            font-size: 1.4rem; /* Increase the base font size for paragraphs */
         }
         .container {
             margin-top: 50px;
+            max-width: 1200px;
         }
         .result-image {
-            width: 100%;
-            max-width: 800px;
+            width: 90%; /* Make the graph 90% of the width */
             height: auto;
+            aspect-ratio: auto; /* Maintain the aspect ratio */
             margin: 0 auto;
             display: block;
         }
         .btn-back {
             margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 100%;
+            }
+            body {
+                font-size: 1.2rem; /* Adjust font size for mobile */
+            }
+            .btn-back {
+                font-size: 1rem;
+                padding: 8px;
+            }
         }
     </style>
 </head>
 <body>
    <div class="container">
-       <h1>Energy Optimization Results</h1>
+    <h1 class="text-center">Energy Optimization Results</h1>
 
-       <h2>Graphical Representation</h2>
-       <p>The graph below visualizes the energy input patterns:</p>
+
        <img src="{{ url_for('static', filename='output.svg') }}" alt="Optimization Results Graph" class="result-image">
 
        <h2>Summary of Results</h2>
@@ -50,7 +66,9 @@
        <p>The solar method cost is around {{ total_cost['Solar'] }} units. If this method's cost is near zero, it means that the consumption happened mostly when solar energy was available. To simplify this simulation and avoid complications regarding energy loss calculation, the energy loss rate was considered zero. (In reality, EWHs have good insulation, with around 1% energy loss per hour).</p>
 
        <!-- Add a button to go back to the main page -->
-       <a href="/" class="btn btn-primary btn-back">Return to Input Page</a>
+       <div class="text-center">
+        <a href="/" class="btn btn-primary btn-back">Return to Input Page</a>
+       </div>
    </div>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
