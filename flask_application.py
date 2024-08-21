@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-import subprocess , os , yaml , uuid , pandas as pd
+import subprocess , os , yaml , uuid , pandas as pd, sys
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Required for session
@@ -35,7 +35,7 @@ def form():
             os.environ['TEMP_CONFIG_PATH'] = temp_config_path
             
             # Run Solve.py
-            subprocess.run(["python", "Solve.py"])
+            subprocess.run([sys.executable, "Solve.py"])
             
             # Cleanup temporary file
             if os.path.exists(temp_config_path):
