@@ -49,9 +49,11 @@ def form():
 
 @app.route('/results')
 def results():
-    csv_file_path = 'OneDayDF.csv'  # Ensure this path is correct
+    # Get the absolute path to the CSV file
+    script_dir = os.path.dirname(os.path.realpath(__file__))  # Get the directory of the current script
+    csv_file_path = os.path.join(script_dir, 'OneDayDF.csv')  # Combine with the CSV filename
 
-    # Check if file exists before proceeding
+    # Check if the file exists before proceeding
     if not os.path.exists(csv_file_path):
         return "CSV file not found", 404
 
